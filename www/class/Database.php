@@ -1,0 +1,42 @@
+<?php
+
+class Database {
+    
+    public $db;
+    
+    public function __construct ($host, $user, $pass, $db) {
+        $this -> db = mysql_connect ($server, $user, $pass);
+        if(!$this->db) {
+            exit ('no connetc');
+        }
+        if(!mysql_select_db ($db, $this->db)) {
+            exit ('no table');
+        }    
+        mysql_query("SET NAMES utf8");
+        
+        return $this->db;
+    }
+    
+    public function get_all_db () {
+        $sql = "SELECT id, title, content FROM articles LIMIT 5";
+        
+        $res = mysql_query($sql);
+        if(!$res){
+            return FALSE;
+        }
+        for ($i = 0; $i < mysql_num_rows($res); $i++){
+            $row[] = mysql_fetch_array($res, MYSQL_ASSOC); //вот тут меня что-то смущает
+        }
+        return $row;
+        
+    }
+    
+    public function get_one_db () {
+        
+        
+    }
+    
+    
+}
+
+?>
