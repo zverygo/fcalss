@@ -17,15 +17,16 @@ class Database {
         return $this->db;
     }
     
-    public function get_all_db () {
-        $sql = "SELECT id, title, content FROM articles LIMIT 5";
+    public function get_all_db ($lim) {
+        $limit = $lim;
+        $sql = "SELECT id, title, content, date FROM articles LIMIT $limit";
         
         $res = mysql_query($sql);
         if(!$res){
             return FALSE;
         }
         for ($i = 0; $i < mysql_num_rows($res); $i++){
-            $row[] = mysql_fetch_array($res, MYSQL_ASSOC); //вот тут меня что-то смущает
+            $row[] = mysql_fetch_array($res, MYSQL_ASSOC);
         }
         return $row;
         
@@ -33,7 +34,7 @@ class Database {
     
     public function get_one_db ($id) {
         //echo "get_one_db ".$id;
-        $sql = "SELECT id, title, content FROM articles WHERE id = '$id'";
+        $sql = "SELECT id, title, content, date FROM articles WHERE id = '$id'";
         $res = mysql_query ($sql);
         //var_dump ($res);
         if (!$res) {

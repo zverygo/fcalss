@@ -5,9 +5,9 @@ class Page {
     public $text;
     
     // возвращает все статьи
-    public function get_all () {
+    public function get_all ($lim) {
         $db = new Database (HOST, USER, PASS, DB);
-        $result = $db -> get_all_db();
+        $result = $db -> get_all_db($lim);
         
         return $result;
         
