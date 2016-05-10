@@ -5,6 +5,7 @@ include 'class/Database.php';
 include 'class/Page.php';
 
 $page = new Page ();
+
 if (isset($_GET['id'])){
     $id = (int)$_GET['id'];
     //echo "index ".$id;

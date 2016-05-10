@@ -9,7 +9,7 @@
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
         <div>
-            <a href="index.php?action=add">Добавить статью</a><br><br>
+            <a href="admin.php?action=add">Добавить статью</a><br><br>
             <table class="admin-table">
                 <tr>
                     <th>Дата</th>

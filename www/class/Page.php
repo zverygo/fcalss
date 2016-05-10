@@ -29,6 +29,14 @@ class Page {
         include $file.'.php';
         return ob_get_clean();
     }
+    
+    public function get_new ($title, $date, $content) {
+        $db = new Database (HOST, USER, PASS, DB);
+        $result = $db -> get_new_db ($title, $date, $content);
+        
+        return $result;
+    }
+    
 }
 
 ?>

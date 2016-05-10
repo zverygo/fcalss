@@ -31,6 +31,14 @@ class Database {
         return $row;
         
     }
+    // какой-то лютый пиздец, который возвращает количество статей
+    public function get_num_row_db () {
+        $sql = "SELECT id date FROM articles";
+        $res = mysql_query($sql);
+        $num_row = mysql_num_rows($res);
+        return $num_row;
+        
+    }
     
     public function get_one_db ($id) {
         //echo "get_one_db ".$id;
@@ -42,6 +50,19 @@ class Database {
         }
         $row = mysql_fetch_array ($res, MYSQL_ASSOC);
         return $row;
+    }
+    // метод добавления новой статьи
+    public function get_new_db ($title, $date, $content) {
+        $t = "INSERT INTO articles (title, date, content) VALUES ('%s', '%s', '%s')";
+    
+        //$query = sprintf ($t, mysqli_real_escape_string($title), mysqli_real_escape_string($date), mysqli_real_escape_string($content)); // экранируем от SQL иньекций
+    
+        $result = mysqli_query ($query);
+        //if (!$result)
+        //    die(mysqli_error($link));
+    
+        return true;
+        
     }
     
     
