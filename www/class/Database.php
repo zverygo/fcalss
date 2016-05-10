@@ -31,9 +31,16 @@ class Database {
         
     }
     
-    public function get_one_db () {
-        
-        
+    public function get_one_db ($id) {
+        //echo "get_one_db ".$id;
+        $sql = "SELECT id, title, content FROM articles WHERE id = '$id'";
+        $res = mysql_query ($sql);
+        //var_dump ($res);
+        if (!$res) {
+            return FALSE;
+        }
+        $row = mysql_fetch_array ($res, MYSQL_ASSOC);
+        return $row;
     }
     
     
