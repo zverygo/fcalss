@@ -8,13 +8,12 @@
 <body>
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
-        <a href="../admin/index.php">Admin panel</a>
         <div>
            <?php foreach($text as $a): ?>
             <div>
                 <h3><a href="index.php?id=<?=$a['id']?>"><?=$a['title']?></a></h3>
                 <em>Опубликовано: <?=$a['date']?></em>
-                <p><?=$a['content']?></p>
+                <p><?=mb_substr($a['content'],0,250)."..."?></p>
             </div>
             <?php endforeach ?>
         </div>

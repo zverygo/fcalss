@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -10,7 +9,7 @@
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
         <div>
-            <div class="article">
+           <div>
                 <h3><?=$text['title']?></h3>
                 <em>Опубликовано: <?=$text['date']?></em>
                 <p><?=$text['content']?></p>
