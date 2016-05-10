@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>BLOG</title>
+    <title>F_class</title>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
@@ -10,11 +10,11 @@
         <h1><a href="../index.php">BLOG</a></h1>
         <a href="../admin/index.php">Admin panel</a>
         <div>
-           <?php foreach($articles as $a): ?>
+           <?php foreach($text as $a): ?>
             <div>
                 <h3><a href="article.php?id=<?=$a['id']?>"><?=$a['title']?></a></h3>
                 <em>Опубликовано: <?=$a['date']?></em>
-                <p><?=articles_intro($a['content'])?>...</p>
+                <p><?=$a['content']?>...</p>
             </div>
             <?php endforeach ?>
         </div>

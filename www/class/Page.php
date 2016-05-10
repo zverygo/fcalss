@@ -17,9 +17,10 @@ class Page {
         
     }
     
-    public function get_body () {
-        
-        
+    public function get_body ($text, $file) {
+        ob_start ();
+        include $file.'.php';
+        return ob_get_clean();
     }
 }
 

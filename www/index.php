@@ -10,7 +10,7 @@ if (isset($_GET['id'])){
 }
 else {
     $text = $page -> get_all();
-    print_r ($text);
+    echo $page -> get_body($text, 'view/articles');
     
 }
 
