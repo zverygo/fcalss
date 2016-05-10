@@ -9,11 +9,9 @@
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
         <div>
-           <div>
-                <h3><?=$text['title']?></h3>
-                <em>Опубликовано: <?=$text['date']?></em>
-                <p><?=$text['content']?></p>
-            </div>
+            <h3><?=$text['title']?></h3>
+            <em>Опубликовано: <?=$text['date']?></em>
+            <p><?=$text['content']?></p>
         </div>
         <footer>
             <p>BLOG <br> Coryright &copy; 2016</p>

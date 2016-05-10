@@ -8,15 +8,13 @@
 <body>
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
+        <?php foreach($text as $a): ?>
         <div>
-           <?php foreach($text as $a): ?>
-            <div>
-                <h3><a href="index.php?id=<?=$a['id']?>"><?=$a['title']?></a></h3>
-                <em>Опубликовано: <?=$a['date']?></em>
-                <p><?=mb_substr($a['content'],0,250)."..."?></p>
-            </div>
-            <?php endforeach ?>
+            <h3><a href="index.php?id=<?=$a['id']?>"><?=$a['title']?></a></h3>
+            <em>Опубликовано: <?=$a['date']?></em>
+            <p><?=mb_substr($a['content'],0,250)."..."?></p>
         </div>
+        <?php endforeach ?>
         <footer>
             <p>BLOG <br> Coryright &copy; 2016</p>
         </footer>
