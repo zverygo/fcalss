@@ -8,6 +8,7 @@
 <body>
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
+        <h6><a href="../admin/admin.php">Admin Panel</a></h6>
         <div>
            <div>
                 <h3><?=$text['title']?></h3>
