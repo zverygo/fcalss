@@ -35,6 +35,18 @@ class Page {
         $result = $db -> get_new_db ($title, $date, $content);
     }
     
+    public function get_edit ($id, $title, $date, $content) {
+         $db = new Database (HOST, USER, PASS, DB);
+         $result = $db -> get_edit_db ($id, $title, $date, $content);       
+    }
+    
+    public function get_del ($id) {
+        $db = new Database (HOST, USER, PASS, DB);
+        $result = $db -> get_del_db ($id);
+    }
+    
+    
+    
 }
 
 ?>

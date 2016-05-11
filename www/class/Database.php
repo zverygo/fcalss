@@ -54,16 +54,33 @@ class Database {
     // метод добавления новой статьи
     public function get_new_db ($title, $date, $content) {
         
-        $sql = "INSERT INTO articles (title, date, content) VALUES ('$title', '$date', '$content')";
-        
+        $sql = "INSERT INTO articles (title, date, content) VALUES ('$title', '$date', '$content')"; //добавить экранирование значений
         $res = mysql_query ($sql);
         
         if (!$res) {
             return FALSE;
         }
+        return header ("Location: ../admin/admin.php"); //возвращаемся в админ панель
         
     }
-    
+    //метод для редактирования существующей статьи
+    public function get_edit_db ($id, $title, $date, $content) {
+        $sql = "UPDATE articles SET title='$title', content='$content', date='$date' WHERE id='$id'";
+        $res = mysql_query ($sql);
+        if (!$res)
+            return FALSE;
+        return header ("Location: ../admin/admin.php");
+    }
+    // метод для удаления статьи
+    public function get_del_db ($id) {
+        
+        $sql = "DELET FROM articles WHERE id='$id'";
+        $res = mysql_query ($sql);
+        if (!$res) {
+            return FALSE;
+        }
+        return header ("Location: ../admin/admin.php");
+    }
     
 }
 
