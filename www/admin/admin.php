@@ -15,11 +15,11 @@ else
     
 if ($action == "add"){
     //тут будет функция добавления статьи
-    if(!empty($_POST)) {
-        $page -> get_new ($_POST['title'], $_POST['date'], $_POST['content']);
-//        header ("Location: admin.php"); 
+    if(!empty($_POST)){
+        $text = $page -> get_new ($_POST['title'], $_POST['date'], $_POST['content']);
+        header ("Location: admin.php"); 
     }
-    echo $page -> get_body ('', "../view/adm_article");    
+    echo $page -> get_body ($text, "../view/adm_article");    
 }
 else {
     //echo "admin panel";

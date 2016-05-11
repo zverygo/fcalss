@@ -53,15 +53,14 @@ class Database {
     }
     // метод добавления новой статьи
     public function get_new_db ($title, $date, $content) {
-        $t = "INSERT INTO articles (title, date, content) VALUES ('%s', '%s', '%s')";
-    
-        //$query = sprintf ($t, mysqli_real_escape_string($title), mysqli_real_escape_string($date), mysqli_real_escape_string($content)); // экранируем от SQL иньекций
-    
-        $result = mysqli_query ($query);
-        //if (!$result)
-        //    die(mysqli_error($link));
-    
-        return true;
+        
+        $sql = "INSERT INTO articles (title, date, content) VALUES ('$title', '$date', '$content')";
+        
+        $res = mysql_query ($sql);
+        
+        if (!$res) {
+            return FALSE;
+        }
         
     }
     
