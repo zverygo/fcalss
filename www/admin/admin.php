@@ -19,7 +19,8 @@ if ($action == "add"){
         $text = $page -> get_new ($_POST['title'], $_POST['date'], $_POST['content']);
     }
     echo $page -> get_body ($text, "../view/adm_article");
-    } else if ($action == "edit") {
+}
+    else if ($action == "edit") {
         if (!isset ($_GET['id']))
             header ("Location: index.php");
         $id = (int)$_GET['id'];
@@ -28,7 +29,8 @@ if ($action == "add"){
         }
         $text = $page -> get_one ($id);
         echo $page -> get_body ($text, "../view/adm_article");
-    } else if ($action == "delete") {
+    }
+    else if ($action == "delete") {
         $id = $_GET['id'];
         $page -> get_del ($id);
     }

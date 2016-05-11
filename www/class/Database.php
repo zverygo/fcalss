@@ -74,7 +74,7 @@ class Database {
     // метод для удаления статьи
     public function get_del_db ($id) {
         
-        $sql = "DELET FROM articles WHERE id='$id'";
+        $sql = "DELETE FROM articles WHERE id='$id'";
         $res = mysql_query ($sql);
         if (!$res) {
             return FALSE;
