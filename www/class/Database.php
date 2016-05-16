@@ -105,20 +105,21 @@ class Database {
     }
     
     public function get_log_user ($email, $password){
-        
+        // ---- прверка существует ли пользователь -- 
         $em_arr = "SELECT email FROM users WHERE email = '$email' ";
         $r = mysql_query ($em_arr);
         $n = mysql_num_rows ($r);
-        echo $n."<br>";
         if ($n == 0) {
             echo "пользователь не существует"."<br>";
         } 
+        // --- если есть проверяем пароль ---
         else{
-            $pw = "SELECT password FROM users WHERE email = '$email' ";
-            $r_pw = mysql_query ($pw);
-            echo $r_pw."<br>";
-            if(md5($password) == $r_pw){
-                echo "пользователь зашел"."<br>";
+            $pw = "SELECT password FROM users WHERE email = '$email'";
+            $res = mysql_query ($pw);
+            $row = mysql_fetch_array ($res);
+            $pass = $row['password'];
+            if(md5($password) == $pass){
+                return header ("Location: ../index.php");
             }
             else {
                 echo "неверный пароль"."<br>";
