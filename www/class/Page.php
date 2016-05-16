@@ -3,6 +3,8 @@
 class Page {
     
     public $text;
+
+// ----- РАБОТА СО СТАТЬЯМИ ------------      
     
     // возвращает все статьи
     public function get_all ($lim) {
@@ -45,7 +47,19 @@ class Page {
         $result = $db -> get_del_db ($id);
     }
     
+// ----- РАБОТА С ПОЛЬЗОВАТЕЛЯМИ ------------   
     
+    public function get_reg ($email, $password) {
+        $db = new Database (HOST, USER, PASS, DB);
+        $result = $db -> get_reg_user ($email, $password);
+        
+    }
+    
+    public function get_log ($email, $password) {
+        $db = new Database (HOST, USER, PASS, DB);
+        $result = $db -> get_log_user ($email, $password);
+        
+    }
     
 }
 

@@ -16,10 +16,11 @@ class Database {
         
         return $this->db;
     }
+
+// ----- РАБОТА СО СТАТЬЯМИ ------------    
     
     public function get_all_db ($lim) {
-        $limit = $lim;
-        $sql = "SELECT id, title, content, date FROM articles ORDER BY id DESC LIMIT $limit";
+        $sql = "SELECT id, title, content, date FROM articles ORDER BY id DESC LIMIT $lim";
         
         $res = mysql_query($sql);
         if(!$res){
@@ -33,7 +34,7 @@ class Database {
     }
     // какой-то лютый пиздец, который возвращает количество статей
     public function get_num_row_db () {
-        $sql = "SELECT id date FROM articles";
+        $sql = "SELECT id FROM articles";
         $res = mysql_query($sql);
         $num_row = mysql_num_rows($res);
         return $num_row;
@@ -80,6 +81,50 @@ class Database {
             return FALSE;
         }
         return header ("Location: ../admin/admin.php");
+    }
+    
+// ----- РАБОТА С ПОЛЬЗОВАТЕЛЯМИ ------------ 
+    
+    public function get_reg_user ($email, $password) {
+        // -- проверяем есть ли пользователь в базе, если n > 0, то есть
+        $em_arr = "SELECT id_user FROM users WHERE email = '$email' ";
+        $r = mysql_query($em_arr);
+        $n = mysql_num_rows($r);
+        
+        if ($n == 0){
+            $password = md5($password); // шифруем пароль перед записью в базу
+            $sql = "INSERT INTO users (email, password) VALUE ('$email', '$password')";
+            $res = mysql_query ($sql);
+            if(!$res)
+                return FALSE;
+            return header ("Location: ../reg/reg.php");
+        }        
+        else {
+            echo "пользователь уже существует";
+        }
+    }
+    
+    public function get_log_user ($email, $password){
+        
+        $em_arr = "SELECT email FROM users WHERE email = '$email' ";
+        $r = mysql_query ($em_arr);
+        $n = mysql_num_rows ($r);
+        echo $n."<br>";
+        if ($n == 0) {
+            echo "пользователь не существует"."<br>";
+        } 
+        else{
+            $pw = "SELECT password FROM users WHERE email = '$email' ";
+            $r_pw = mysql_query ($pw);
+            echo $r_pw."<br>";
+            if(md5($password) == $r_pw){
+                echo "пользователь зашел"."<br>";
+            }
+            else {
+                echo "неверный пароль"."<br>";
+            }
+        }
+        
     }
     
 }
