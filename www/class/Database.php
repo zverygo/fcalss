@@ -19,7 +19,7 @@ class Database {
     
     public function get_all_db ($lim) {
         $limit = $lim;
-        $sql = "SELECT id, title, content, date FROM articles LIMIT $limit";
+        $sql = "SELECT id, title, content, date FROM articles ORDER BY id DESC LIMIT $limit";
         
         $res = mysql_query($sql);
         if(!$res){
