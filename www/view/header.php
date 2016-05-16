@@ -7,6 +7,7 @@
     
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
+        <h6><a href="../reg/reg.php">LOGIN</a></h6>
     </div>
 </head>
 <body>

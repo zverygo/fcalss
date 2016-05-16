@@ -13,10 +13,15 @@ else
     $action = "";   
 
 if ($action == "reg") {
+    if(!empty($_POST)){
+        $text = $page -> get_reg ($_POST['email'], $_POST['password']);
+    }
     echo $page -> get_body($text, '../view/register');
 } 
-
 else {
+    if(!empty($_POST)){
+        $text = $page -> get_log ($_POST['email'], $_POST['password']);
+    }
     echo $page -> get_body($text, '../view/login');
 }
 

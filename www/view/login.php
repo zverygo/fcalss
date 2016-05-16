@@ -1,7 +1,7 @@
 <?php include_once 'header.php'; ?>
 
 <div class="container">
-    <h5> ЗАРЕГЕСТРИРУЙСЯ ВО МНЕ ПОЛНОСТЬЮ </h5>
+    <h5> ВОЙДИ В МЕНЯ ПОЛНОСТЬЮ </h5>
     <form method="post">
         <div class="form-group">
             <label>E-MAIL</label>
@@ -13,8 +13,9 @@
             <br>
             <input type="password" name="password" class="form-item" value="" required>
         </div>
-        <input type="submit" value="REGISTER" class="btn">
+        <input type="submit" value="LOGIN" class="btn">
     </form>
+    <a href="reg.php?action=reg">REGISTER</a>
 </div>
     
 <?php include_once 'footer.php'; ?>
