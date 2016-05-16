@@ -19,4 +19,5 @@
         <?php endforeach ?>
         </table>    
     </div>
-<?php include 'footer.php'; ?>
+
+<?php include_once 'footer.php'; ?>
