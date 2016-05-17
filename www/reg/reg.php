@@ -14,8 +14,9 @@ else
 
 if ($action == "reg") {
     if(!empty($_POST)){
-        if ($_POST['password']==$_POST['r_password'])
+        if ($_POST['password'] == $_POST['r_password']){ // проверка пароля на совпадение
             $text = $page -> get_reg ($_POST['email'], $_POST['password']);
+        }
         else
             echo "пароли не совпадают";
     }
