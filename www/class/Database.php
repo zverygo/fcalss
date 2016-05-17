@@ -119,6 +119,11 @@ class Database {
             $row = mysql_fetch_array ($res);
             $pass = $row['password'];
             if(md5($password) == $pass){
+                
+                session_start (); // если залогинились то открываем сессию и записываем в нее пароль и логин
+                $_SESSION ["login"] = $email;
+                $_SESSION ["pass"] = $row['password'];
+                
                 return header ("Location: ../index.php");
             }
             else {
