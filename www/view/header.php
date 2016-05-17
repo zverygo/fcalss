@@ -2,10 +2,10 @@
 
 session_start ();
 
-if (isset($_SESSION["login"]))
+/*if (isset($_SESSION["login"]))
     echo $_SESSION["login"];
 else
-    echo "NO";
+    echo "NO";*/
 ?>
 
 
@@ -18,8 +18,14 @@ else
     
     <div class="container">
         <h1><a href="../index.php">BLOG</a></h1>
-        <h6><a href="../reg/reg.php">LOGIN</a></h6>
-        <h6><a href="../admin/admin.php">Admin Panel</a></h6>
+        <?php
+        if (isset($_SESSION["login"]))
+            echo $_SESSION["login"];
+        else {
+        echo '<h6><a href="../reg/reg.php">LOGIN</a></h6>
+              <h6><a href="../admin/admin.php">Admin Panel</a></h6>';
+        }
+        ?>
     </div>
 </head>
 <body>
