@@ -14,7 +14,10 @@ else
 
 if ($action == "reg") {
     if(!empty($_POST)){
-        $text = $page -> get_reg ($_POST['email'], $_POST['password']);
+        if ($_POST['password']==$_POST['r_password'])
+            $text = $page -> get_reg ($_POST['email'], $_POST['password']);
+        else
+            echo "пароли не совпадают";
     }
     echo $page -> get_body($text, '../view/register');
 } 

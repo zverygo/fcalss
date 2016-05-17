@@ -13,6 +13,11 @@
             <br>
             <input type="password" name="password" class="form-item" value="" required>
         </div>
+        <div class="form-group">
+            <label>REPEAT PASSWORD</label>
+            <br>
+            <input type="password" name="r_password" class="form-item" value="" required>
+        </div>
         <input type="submit" value="REGISTER" class="btn">
     </form>
 </div>
