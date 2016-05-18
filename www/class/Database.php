@@ -1,5 +1,5 @@
 <?php
-
+session_start ();
 class Database {
     
     public $db;
@@ -20,7 +20,7 @@ class Database {
 // ----- РАБОТА СО СТАТЬЯМИ ------------    
     
     public function get_all_db ($lim) {
-        $sql = "SELECT id, title, content, date FROM articles ORDER BY id DESC LIMIT $lim";
+        $sql = "SELECT * FROM articles ORDER BY id DESC LIMIT $lim";
         
         $res = mysql_query($sql);
         if(!$res){
@@ -114,19 +114,18 @@ class Database {
         } 
         // --- если есть проверяем пароль ---
         else{
-            $pw = "SELECT password FROM users WHERE email = '$email'";
+            $pw = "SELECT password, role FROM users WHERE email = '$email'";
             $res = mysql_query ($pw);
             $row = mysql_fetch_array ($res);
             $pass = $row['password'];
             if(md5($password) == $pass){
-                
-                session_start (); // если залогинились то открываем сессию и записываем в нее пароль и логин
+                //session_start (); // если залогинились то открываем сессию и записываем в нее пароль и логин
                 $_SESSION ["login"] = $email;
-                $_SESSION ["pass"] = $row['password'];
-                
+                $_SESSION ["role"] = $row['role'];
                 return header ("Location: ../index.php");
             }
             else {
+                
                 echo "неверный пароль"."<br>";
             }
         }
