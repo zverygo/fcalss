@@ -20,7 +20,10 @@ else
         <h1><a href="../index.php">BLOG</a></h1>
         <?php
         if (isset($_SESSION["login"]))
-            echo $_SESSION["login"];
+            echo $_SESSION["login"].'
+                <form method="post" action="../reg/reg.php?action=logout">
+                <input type="submit" name="logout" value="LOG OUT">
+                </form>';
         else {
         echo '<h6><a href="../reg/reg.php">LOGIN</a></h6>
               <h6><a href="../admin/admin.php">Admin Panel</a></h6>';
