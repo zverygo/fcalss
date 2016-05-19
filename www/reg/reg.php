@@ -1,11 +1,11 @@
 <?php
 
 include '../config.php';
-include '../class/Database.php';
+include '../class/Post.php';
 include '../class/Page.php';
+include '../class/User.php';
 
 $page = new Page ();
-$row = new Database (HOST, USER, PASS, DB);
 
 if (isset($_GET['action']))
     $action = $_GET['action'];

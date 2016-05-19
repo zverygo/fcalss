@@ -1,8 +1,9 @@
 <?php
 
 include 'config.php';
-include 'class/Database.php';
+include 'class/Post.php';
 include 'class/Page.php';
+include 'class/User.php';
 
 $page = new Page ();
 
