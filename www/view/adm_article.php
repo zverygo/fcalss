@@ -8,11 +8,6 @@
                     <input type="text" name="title" value="<?=$text['title']?>" class="form-item" autofocus required>
                 </div>
                 <div class="form-group">
-                    <label>Дата</label>
-                    <br>
-                    <input type="date" name="date" value="<?=$text['date']?>" class="form-item" required>
-                </div>
-                <div class="form-group">
                     <label>Содержание</label>
                     <br>
                     <textarea class="form-item" name="content" required><?=$text['content']?></textarea>

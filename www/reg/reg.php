@@ -28,11 +28,13 @@ else if ($action == "logout"){
         unset($_SESSION['name']);
         session_destroy ();
     }
-    header ("Location: ../index.php");
-    //header ("location: ../logout.php");
-    
+    header ("Location: ../index.php");    
 }
-   
+
+else if ($action == "lc") {
+    header ("Location: ../view/user.php");
+}
+
 else  {
     if(!empty($_POST)){
         $text = $page -> get_log ($_POST['email'], $_POST['password']);

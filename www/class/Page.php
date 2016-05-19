@@ -32,9 +32,9 @@ class Page {
         return ob_get_clean();
     }
     
-    public function get_new ($title, $date, $content) {
+    public function get_new ($title, $content) {
         $db = new Database (HOST, USER, PASS, DB);
-        $result = $db -> get_new_db ($title, $date, $content);
+        $result = $db -> get_new_db ($title, $content);
     }
     
     public function get_edit ($id, $title, $date, $content) {
@@ -59,6 +59,13 @@ class Page {
         $db = new Database (HOST, USER, PASS, DB);
         $result = $db -> get_log_user ($email, $password);
         
+    }
+    
+    public function get_all_user ($lim) {
+        $db = new Database (HOST, USER, PASS, DB);
+        $result = $db -> get_all_user_db ($lim);
+        
+        return $result;
     }
     
 }

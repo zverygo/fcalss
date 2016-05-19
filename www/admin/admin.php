@@ -12,14 +12,14 @@ if (isset($_GET['action']))
 else 
     $action = "";   
 
-if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя было просто пройти по ссылке    
+if ($_SESSION['role'] == "admin" or $_SESSION['role'] == "moderator"){ // проверка чтобы нельзя было просто пройти по ссылке    
     if ($action == "add"){
         // функция добавления статьи
         if(!empty($_POST)){
-            $text = $page -> get_new ($_POST['title'], $_POST['date'], $_POST['content']);
+            $text = $page -> get_new ($_POST['title'], $_POST['content']);
         }
         echo $page -> get_body ($text, "../view/adm_article");
-        }
+    } 
     else if ($action == "edit") {
         if (!isset ($_GET['id']))
             header ("Location: index.php");
@@ -33,6 +33,14 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
     else if ($action == "delete") {
         $id = $_GET['id'];
         $page -> get_del ($id);
+    }
+    else if ($action == "users") {
+        //$num_row = $row -> get_num_row_db ();
+        $num_row = 20;
+        $text = $page -> get_all_user($num_row);
+        echo $page -> get_body ($text, '../view/adm_users');
+        //header ("Location: ../view/adm_users.php");
+        
     }
     else {
         //echo "admin panel";

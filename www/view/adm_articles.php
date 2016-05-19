@@ -3,7 +3,7 @@
     <div class="container">
         <table class="admin-table">
             <tr>
-                <th>Дата</th>
+                <th>Дата и время</th>
                 <th>Заголовок</th>
                 <th>Автор</th>
                 <th></th>
