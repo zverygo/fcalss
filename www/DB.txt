@@ -1,0 +1,16 @@
+articles
+
+| id       |   int(11)      |   p_k |   a_i |   n_n |
+| title    |   varchar(255) |       |       |   n_n |
+| content  |   text         |       |       |   n_n |
+| date     |   datetime     |       |       |   n_n |
+| author   |   varchar(32)  |       |       |   n_n |
+                                                          
+users                                                      
+                                                        
+| id_user   |   int(11)     |   p_k |   a_i |   n_n |
+| email     |   varchar(64) |       |       |   n_n |
+| password  |   varchar(64) |       |       |   n_n |
+| role      |   varchar(16) |       |       |   n_n |
+| date_reg  |   date        |       |       |   n_n |
+| About     |   text        |       |       |   null|    
