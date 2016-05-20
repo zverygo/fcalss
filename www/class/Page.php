@@ -31,6 +31,13 @@ class Page {
         include $file.'.php';
         return ob_get_clean();
     }
+// --------- костыль двусторонний -----------   
+      public function get_body_2 ($text, $text_2, $file) {
+        ob_start ();
+        include $file.'.php';
+        return ob_get_clean();
+    }
+// ------------------------------------------    
     
     public function get_new ($title, $content) {
         $db = new Post (HOST, USER, PASS, DB);
@@ -67,7 +74,20 @@ class Page {
         
         return $result;
     }
+    //---отображение статей по конкреному автору--
+    public function get_all_moder (){
+        $db = new Post (HOST, USER, PASS, DB);
+        $result = $db -> get_all_moder_db();
+        
+        return $result;
+    }
     
+      public function get_info_user (){
+        $db = new User (HOST, USER, PASS, DB);
+        $result = $db -> get_info_user_db();
+        
+        return $result;
+    }
 }
 
 ?>

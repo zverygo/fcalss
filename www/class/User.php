@@ -81,5 +81,18 @@ class User {
         return $row;
     
     }
+//------ вывод информации о пользователе в кабинете -------
+    public function get_info_user_db () {
+        $login = $_SESSION ['login'];
+        $sql = "SELECT * FROM users WHERE email = '$login'";
+        $res = mysql_query ($sql);
+        if (!$res)
+            return FALSE;
+        $row = mysql_fetch_array ($res, MYSQL_ASSOC);
+        return $row;
+    }
+        
+    
+    
 }
 ?>

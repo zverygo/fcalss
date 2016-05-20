@@ -83,5 +83,20 @@ class Post {
         }
         return header ("Location: ../admin/admin.php");
     }
+// ---- извлечение постов по конкретному автору --     
+    public function get_all_moder_db () {
+        $login = $_SESSION['login'];
+        $sql = "SELECT * FROM articles WHERE author ='$login' ";
+        
+        $res = mysql_query($sql);
+        if(!$res){
+            return FALSE;
+        }
+        for ($i = 0; $i < mysql_num_rows($res); $i++){
+            $row[] = mysql_fetch_array($res, MYSQL_ASSOC);
+        }
+        return $row;
+               
+    }
 }
 ?>
