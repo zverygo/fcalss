@@ -15,9 +15,8 @@ if (isset($_GET['action']))
 else 
     $action = "";   
 
-if ($_SESSION['role'] == "admin" or $_SESSION['role'] == "moderator"){ // проверка чтобы нельзя было просто пройти по ссылке    
+if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя было просто пройти по ссылке        
     if ($action == "add"){
-        // функция добавления статьи
         if(!empty($_POST)){
             $text = $page -> get_new ($_POST['title'], $_POST['content']);
         }
@@ -38,22 +37,47 @@ if ($_SESSION['role'] == "admin" or $_SESSION['role'] == "moderator"){ // про
         $page -> get_del ($id);
     }
     else if ($action == "users") {
-        //$num_row = $row -> get_num_row_db ();
         $num_row = 20;
         $text = $page -> get_all_user($num_row);
         echo $page -> get_body ($text, '../view/adm_users');
-        //header ("Location: ../view/adm_users.php");
-        
     }
     else {
-        //echo "admin panel";
         $num_row = $row -> get_num_row_db ();
         $text = $page -> get_all($num_row);
         echo $page -> get_body($text, '../view/adm_articles');
     }
 }
+///////////////////////////////////////////////////
+else if ($_SESSION['role'] == "moderator"){      
+    if ($action == "add"){
+        if(!empty($_POST)){
+            $text = $page -> get_new ($_POST['title'], $_POST['content']);
+        }
+        echo $page -> get_body ($text, "../view/adm_article");
+    } 
+    else if ($action == "edit") {
+        if (!isset ($_GET['id']))
+            header ("Location: index.php");
+        $id = (int)$_GET['id'];
+        if (!empty($_POST) && $id > 0) {
+            $text = $page -> get_edit ($id, $_POST['title'], $_POST['date'], $_POST['content']);
+        }
+        $text = $page -> get_one ($id);
+        echo $page -> get_body ($text, "../view/user");
+    }
+    else if ($action == "delete") {
+        $id = $_GET['id'];
+        $page -> get_del ($id);
+    }
+    else {
+        $text_2 = $page -> get_info_user ();
+    
+        $text = $page -> get_all_moder(); // формируем массив со стотьями
+        echo $page -> get_body_2($text, $text_2, '../view/user');
+    }
+}
+///////////////////////////////////////////////////    
 else
     header ("Location: ../index.php"); 
-
 
 ?>
