@@ -86,7 +86,7 @@ class Post {
 // ---- извлечение постов по конкретному автору --     
     public function get_all_moder_db () {
         $login = $_SESSION['login'];
-        $sql = "SELECT * FROM articles WHERE author ='$login' ";
+        $sql = "SELECT * FROM articles WHERE author ='$login' ORDER BY id DESC";
         
         $res = mysql_query($sql);
         if(!$res){
