@@ -13,4 +13,5 @@ users
 | password  |   varchar(64) |       |       |   n_n |
 | role      |   varchar(16) |       |       |   n_n |
 | date_reg  |   date        |       |       |   n_n |
-| About     |   text        |       |       |   null|    
+| About     |   text        |       |       |   null|
+| full_name |   varchar(64) |       |       |   null|

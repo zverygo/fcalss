@@ -44,7 +44,7 @@ class Page {
         $result = $db -> get_new_db ($title, $content);
     }
     
-    public function get_edit ($id, $title, $date, $content) {
+    public function get_edit ($id, $title, $content) {
          $db = new Post (HOST, USER, PASS, DB);
          $result = $db -> get_edit_db ($id, $title, $date, $content);       
     }
@@ -56,9 +56,9 @@ class Page {
     
 // ----- РАБОТА С ПОЛЬЗОВАТЕЛЯМИ ------------   
     
-    public function get_reg ($email, $password) {
+    public function get_reg ($full_name, $email, $password, $about) {
         $db = new User (HOST, USER, PASS, DB);
-        $result = $db -> get_reg_user ($email, $password);
+        $result = $db -> get_reg_user ($full_name, $email, $password, $about);
         
     }
     
@@ -82,11 +82,18 @@ class Page {
         return $result;
     }
     
-      public function get_info_user (){
+    public function get_info_user (){
         $db = new User (HOST, USER, PASS, DB);
         $result = $db -> get_info_user_db();
         
         return $result;
+    }
+    
+    public function get_edit_user ($full_name, $about) {
+        $db = new User (HOST, USER, PASS, DB);
+        $resatl = $db -> get_user_edit_db ($full_name, $about);
+        
+        return $resalt;
     }
 }
 

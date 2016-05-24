@@ -27,7 +27,7 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
             header ("Location: index.php");
         $id = (int)$_GET['id'];
         if (!empty($_POST) && $id > 0) {
-            $text = $page -> get_edit ($id, $_POST['title'], $_POST['date'], $_POST['content']);
+            $text = $page -> get_edit ($id, $_POST['title'], $_POST['content']);
         }
         $text = $page -> get_one ($id);
         echo $page -> get_body ($text, "../view/adm_article");
@@ -63,7 +63,7 @@ else if ($_SESSION['role'] == "moderator"){
             $text = $page -> get_edit ($id, $_POST['title'], $_POST['date'], $_POST['content']);
         }
         $text = $page -> get_one ($id);
-        echo $page -> get_body ($text, "../view/user");
+        echo $page -> get_body ($text, "../view/adm_article");
     }
     else if ($action == "delete") {
         $id = $_GET['id'];
@@ -71,7 +71,6 @@ else if ($_SESSION['role'] == "moderator"){
     }
     else {
         $text_2 = $page -> get_info_user ();
-    
         $text = $page -> get_all_moder(); // формируем массив со стотьями
         echo $page -> get_body_2($text, $text_2, '../view/user');
     }

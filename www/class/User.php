@@ -19,7 +19,7 @@ class User {
 
 // ----- РАБОТА С ПОЛЬЗОВАТЕЛЯМИ ------------ 
     
-    public function get_reg_user ($email, $password) {
+    public function get_reg_user ($full_name, $email, $password, $about) {
         // -- проверяем есть ли пользователь в базе, если n > 0, то есть
         $em_arr = "SELECT id_user FROM users WHERE email = '$email' ";
         $r = mysql_query($em_arr);
@@ -29,7 +29,7 @@ class User {
             $role = "user";
             $date_reg = date ('y-m-d');
             $password = md5($password); // шифруем пароль перед записью в базу
-            $sql = "INSERT INTO users (email, password, role, date_reg) VALUE ('$email', '$password', '$role', '$date_reg')";
+            $sql = "INSERT INTO users (full_name, email, password, role, date_reg, about) VALUE ('$full_name', '$email', '$password', '$role', '$date_reg', '$about')";
             $res = mysql_query ($sql);
             if(!$res)
                 return FALSE;
@@ -66,7 +66,6 @@ class User {
                 echo "неверный пароль"."<br>";
             }
         }
-        
     }
     
     public function get_all_user_db ($lim) {
@@ -90,6 +89,16 @@ class User {
             return FALSE;
         $row = mysql_fetch_array ($res, MYSQL_ASSOC);
         return $row;
+    }
+///-------редактрование личной информации-------
+    public function get_user_edit_db ($full_name, $about) {
+        $name = $_SESSION['login'];
+        $sql = "UPDATE users SET full_name = '$full_nmae', about = '$about' WHERE email = '$name'";
+        $res = mysql_query ($sql);
+        if(!$res)
+            return FALSE;
+        
+        return header ("Location: ../view/user.php");
     }
         
     

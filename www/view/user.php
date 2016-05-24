@@ -5,6 +5,10 @@
     <h3>Данные пользователя</h3>
     <table class="admin-table">
         <tr>
+            <th>Full Name</th>
+            <td><?=$text_2['full_name']?></td>
+        </tr>
+        <tr>
             <th>E-mail</th>
             <td><?=$text_2['email']?></td>
         </tr>
@@ -18,9 +22,13 @@
         </tr>
         <tr>
             <th>About</th>
-            <td><?=$text_2['About']?></td>
+            <td><?=$text_2['about']?></td>
         </tr>        
-    </table>    
+    </table> 
+    <form method="post" action="../reg/reg.php?action=edit_user">
+        <br>
+        <input type="submit" value="Изменить" class="btn">
+    </form>
 </div>   
 
 <? if ($_SESSION['role'] == "moderator") :?>

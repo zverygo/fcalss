@@ -42,10 +42,8 @@ class Post {
     }
     
     public function get_one_db ($id) {
-        //echo "get_one_db ".$id;
         $sql = "SELECT id, title, content, date FROM articles WHERE id = '$id'";
         $res = mysql_query ($sql);
-        //var_dump ($res);
         if (!$res) {
             return FALSE;
         }
@@ -66,8 +64,8 @@ class Post {
         
     }
     //метод для редактирования существующей статьи
-    public function get_edit_db ($id, $title, $date, $content) {
-        $sql = "UPDATE articles SET title='$title', content='$content', date='$date' WHERE id='$id'";
+    public function get_edit_db ($id, $title, $content) {
+        $sql = "UPDATE articles SET title='$title', content='$content' WHERE id='$id'";
         $res = mysql_query ($sql);
         if (!$res)
             return FALSE;
