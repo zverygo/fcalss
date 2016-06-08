@@ -35,7 +35,7 @@ else if ($action == "logout"){
 else if ($action == "lc") {
     $text_2 = $page -> get_info_user ();
     $text = $page -> get_all_moder(); // формируем массив со стотьями
-    echo $page -> get_body_2($text, $text_2, '../view/user');
+    echo $page -> get_body_2($text, $text_2, '../view/page');
     
 }
 /////////////////////////////////////

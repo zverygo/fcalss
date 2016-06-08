@@ -22,10 +22,10 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-9 col-md-9">
+            <div class="col-lg-9 col-md-9 col-sm-8">
                 <h1><a href="../index.php">BLOG</a></h1>
             </div>
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-3 col-md-3 col-sm-4">
                 <br>
                 <?php
                 if (isset($_SESSION["login"]))
@@ -36,9 +36,9 @@
                         echo '<h6><a href="../reg/reg.php">LOGIN</a></h6>';
 
                 if ($_SESSION["role"] == "admin")
-                    echo '<a href="../admin/admin.php">Admin Panel</a> | 
-                          <a href="../admin/admin.php?action=users">Control Users</a> | 
-                          <a href="../admin/admin.php?action=add">Добавить статью</a><br><br>';
+                    echo '<a href="../admin/admin.php?action=admin">Admin Panel</a>';// | 
+                          //<a href="../admin/admin.php?action=users">Control Users</a> | 
+                         // <a href="../admin/admin.php?action=add">Добавить статью</a><br><br>';
                 if ($_SESSION["role"] == "moderator")
                     echo '<h6><a href="../admin/admin.php?action=add">Добавить статью</a><br><br></h6>';
                 ?>

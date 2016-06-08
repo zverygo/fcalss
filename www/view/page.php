@@ -15,14 +15,35 @@
                 else if ($_GET['action']=='edit') {
                     include 'adm_article.php';
                 }
+                else if ($_GET['action'] == 'admin') {
+                    include 'adm_articles.php';
+                }
                 else {
                     include 'articles.php';
                 }
             ?>
+            <?php if (empty($_GET['action']) && empty($_GET['id'])): ?>
+            <div>
+                <ul class="pagination">
+                <?php
+                    $row = new Post (HOST, USER, PASS, DB);
+                    $num_row = $row -> get_num_row_db ();
+                    for ($a = 0, $b=1; $a < $num_row; $a+=10, $b++){
+                        echo '<li><a href="index.php?page='.$b.'" >'.$b.'</a></li>';
+                    }
+                ?>
+                </ul>
+            </div>
+            <?php endif ?>
         </div>
-        <div class="col-lg-3 col-md-3 ">
-            <img src="http://placehold.it/250x300">
-        </div>
+        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+            <br><br>
+            <img src="http://placehold.it/250x150">
+            <br><br>
+            <img src="http://placehold.it/250x250">
+            <br><br>
+            <img src="http://placehold.it/250x350">
+        </div>      
     </div>
 </div>
 

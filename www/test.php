@@ -1,45 +1,76 @@
 <?php include 'view/header.php'; ?>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../public/js/bootstrap.js"></script>
-    <div class="container">
-        <div class="row">
-            <div class="tabs">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#post_plus" data-toggle="tab">Добавить пост</a></li>
-                    <li><a href="#posts_ctrl" data-toggle="tab">Управление постами</a></li>
-                    <li><a href="#users_ctrl" data-toggle="tab">Управление пользователями</a></li>
-                </ul>
-                <div class="tab-content">
-                    <!-- Вкладка отвечающая за добавлениепостов-->
-                    <div class="tab-pane fade in active" id="post_plus">
-                        <div class="container">
-                            <div class="row bs-example">
-                                 <form method="post" action="index.php">
-                                    <caption>Название поста.</caption>
-                                    <input type="text" class="form-control" placeholder="Text input" name="name_post" autofocus>
-                                    <br>
-                                    <caption>Тело поста.</caption>
-                                    <textarea class="form-control" rows="10" placeholder="Textarea" name="body_post"></textarea>
-                                    <br>
-                                    <input type="submit" value="Сохранить" class="btn">
-                                </form>
-                            </div>
-                        </div>    
-                    </div>
-                    <!-- Вкладка отвечающая за управление постами -->
-                    <div class="tab-pane fade" id="posts_ctrl">
-                        
-                    </div>
-                    
-                    <div class="tab-pane fade" id="users_ctrl">
-                        <p>Управление пользователями</p>
-                    </div>
-                </div> 
-            </div>
-        </div>    
-    </div>
 
+<div class="container">
+    <table class="table table-striped">
+    <?php for ($a = 0, $b = 1; $a<5; $a++, $b++) : ?>
+        <table class="table table-striped">
+        <tr>
+            <td>1</td>
+            <td>
+                <a href="#<?= $a ?>" data-toggle="collapse">11</a>
+                <!--<div class="collapse" id="<?= $a ?>">
+                    <div class="well">
+                        <p>1111111111111111111111</p>
+                    </div>
+                </div>-->
+            </td>
+            <td><a href="#" data-toggle="modal" data-target="#<?= $b ?>">Редактировать</a></td>
+            <td><a href="#">Удалить</a></td>
+        </tr>
+             <table class="table table-striped">
+        <tr>
+            <td>
+                <div class="collapse" id="<?= $a ?>">
+                    <div class="well">
+                        <p>1111111111111111111111</p>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </table>
+            
+        <div class="modal fade" id="<?= $b ?>">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal">
+                        <i class="fa fa-close"></i>
+                    </button>
+                    <h4 class="modal-title">Нaзвание окна <?= $b ?></h4>
+                </div>
+                    <div class="modal-body">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-6">
+                                    <img src="http://placehold.it/240x360" alt="" class="hidden-xs">
+                                    <br> <!-- два br чтоб текст не сливался с картинкой-->
+                                    <br>
+                                    <p><em>11111 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</em></p>
+                                </div>
+                                <div class="row col-lg-8 col-md-8">
+                                    <div class="col-lg-6 col-md-6">
+                                        <p>2222222 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p>3333333 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <p>4444444 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                        <p>5555555 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="button" data-dismiss="modal">Закррыть</button>
+                </div>
+            </div>
+        </div>
+    </div>    
+            
+    <? endfor ?>
+    </table>    
+</div>
+<!-- модальное окно для редактирования статьи -->
+   
 
 <?php include 'view/footer.php'; ?>

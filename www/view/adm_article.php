@@ -10,4 +10,4 @@
         <textarea class="form-control" name="content" required><?=$text['content']?></textarea>
     </div>
     <input type="submit" value="Save" class="btn">
-</form> 
+</form>

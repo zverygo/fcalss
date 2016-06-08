@@ -19,8 +19,8 @@ class Post {
 
 // ----- РАБОТА СО СТАТЬЯМИ ------------    
     
-    public function get_all_db ($lim) {
-        $sql = "SELECT * FROM articles ORDER BY id DESC LIMIT $lim";
+    public function get_all_db ($lim0,$lim) {
+        $sql = "SELECT * FROM articles ORDER BY id DESC LIMIT $lim0,$lim";//////////////////////////////////
         
         $res = mysql_query($sql);
         if(!$res){
@@ -60,7 +60,7 @@ class Post {
         if (!$res) {
             return FALSE;
         }
-        return header ("Location: ../admin/admin.php"); //возвращаемся в админ панель
+        return header ("Location: ../index.php"); //возвращает на главную
         
     }
     //метод для редактирования существующей статьи
@@ -69,7 +69,7 @@ class Post {
         $res = mysql_query ($sql);
         if (!$res)
             return FALSE;
-        return header ("Location: ../admin/admin.php");
+        return header ("Location: ../index.php");
     }
     // метод для удаления статьи
     public function get_del_db ($id) {

@@ -24,13 +24,13 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
     } 
     else if ($action == "edit") {
         if (!isset ($_GET['id']))
-            header ("Location: index.php");
+            header ("Location: index.php"); // если id несуществует, то отправляет на главную
         $id = (int)$_GET['id'];
         if (!empty($_POST) && $id > 0) {
             $text = $page -> get_edit ($id, $_POST['title'], $_POST['content']);
         }
         $text = $page -> get_one ($id);
-        echo $page -> get_body ($text, "../view/adm_article");
+        echo $page -> get_body ($text, "../view/adm_article"); // вызываем шаблон добавления страницы и записываем в поля результат запроса
     }
     else if ($action == "delete") {
         $id = $_GET['id'];
@@ -41,10 +41,10 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
         $text = $page -> get_all_user($num_row);
         echo $page -> get_body ($text, '../view/adm_users');
     }
-    else {
+    else if ($action == 'admin'){
         $num_row = $row -> get_num_row_db ();
-        $text = $page -> get_all($num_row);
-        echo $page -> get_body($text, '../view/adm_articles');
+        $text = $page -> get_all(0,$num_row);
+        echo $page -> get_body($text, '../view/page');
     }
 }
 ///////////////////////////////////////////////////
@@ -53,7 +53,7 @@ else if ($_SESSION['role'] == "moderator"){
         if(!empty($_POST)){
             $text = $page -> get_new ($_POST['title'], $_POST['content']);
         }
-        echo $page -> get_body ($text, "../view/adm_article");
+        echo $page -> get_body ($text, "../view/page");
     } 
     else if ($action == "edit") {
         if (!isset ($_GET['id']))
@@ -68,11 +68,13 @@ else if ($_SESSION['role'] == "moderator"){
     else if ($action == "delete") {
         $id = $_GET['id'];
         $page -> get_del ($id);
+        //$action = lc;
     }
     else {
         $text_2 = $page -> get_info_user ();
         $text = $page -> get_all_moder(); // формируем массив со стотьями
-        echo $page -> get_body_2($text, $text_2, '../view/user');
+        //echo $page -> get_body_2($text, $text_2, '../view/user');
+        echo $page -> get_body_2($text, $text_2, '../view/page');
     }
 }
 ///////////////////////////////////////////////////    

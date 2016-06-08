@@ -7,9 +7,9 @@ class Page {
 // ----- РАБОТА СО СТАТЬЯМИ ------------      
     
     // возвращает все статьи
-    public function get_all ($lim) {
+    public function get_all ($lim0,$lim) {
         $db = new Post (HOST, USER, PASS, DB);
-        $result = $db -> get_all_db($lim);
+        $result = $db -> get_all_db($lim0,$lim);
         
         return $result;
         
