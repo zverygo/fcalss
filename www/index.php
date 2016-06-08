@@ -21,15 +21,15 @@ if (isset($_GET['id'])){
 }
 
 else if (!empty($_GET['page'])) {
-    $lim0 = 0+10*($_GET['page']-1);
-    $lim = 10;
+    $lim0 = 0+3*($_GET['page']-1);
+    $lim = 3;
     $text = $page -> get_all($lim0,$lim);
     echo $page -> get_body($text, 'view/page');
     
 }
 
 else {
-    $text = $page -> get_all(0,10);
+    $text = $page -> get_all(0,3);
     echo $page -> get_body($text, 'view/page');
 }
 

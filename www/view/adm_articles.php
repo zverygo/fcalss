@@ -45,26 +45,11 @@
                                             </button>
                                             <h4 class="modal-title"><?=$a['title']?> <?= $a['id'] ?></h4>
                                         </div>
-                                        <!--
-                                        <div class="modal-body">
+                                            <div class="modal-body">
                                                 <p>
                                                     <?= $a['content'] ?>
                                                 </p>
-                                        </div>
-                                        -->
-                                        <form method="post" action="../admin/admin.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>">
-    <div class="form-group">
-        <label>Название</label>
-        <br>
-        <input type="text" name="title" value="<?=$text['title']?>" class="form-control" autofocus required>
-    </div>
-    <div class="form-group">
-        <label>Содержание</label>
-        <br>
-        <textarea class="form-control" name="content" required><?=$text['content']?></textarea>
-    </div>
-    <input type="submit" value="Save" class="btn">
-</form>
+                                            </div>    
                                         <div class="modal-footer">
                                             <button class="btn btn-danger" type="button" data-dismiss="modal">Закррыть</button>
                                         </div>

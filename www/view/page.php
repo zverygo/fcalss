@@ -22,19 +22,27 @@
                     include 'articles.php';
                 }
             ?>
+            
             <?php if (empty($_GET['action']) && empty($_GET['id'])): ?>
             <div>
                 <ul class="pagination">
                 <?php
                     $row = new Post (HOST, USER, PASS, DB);
                     $num_row = $row -> get_num_row_db ();
-                    for ($a = 0, $b=1; $a < $num_row; $a+=10, $b++){
+                    /*for ($a = 0, $b=1; $a < $num_row; $a+=3, $b++){
+                        echo '<li><a href="index.php?page='.$b.'" >'.$b.'</a></li>';
+                    }*/
+                    
+                    for ($a = 0; $a < 3; $a++){
+                        $b++;
                         echo '<li><a href="index.php?page='.$b.'" >'.$b.'</a></li>';
                     }
+                    
                 ?>
                 </ul>
             </div>
             <?php endif ?>
+            
         </div>
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
             <br><br>
