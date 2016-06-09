@@ -43,8 +43,19 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
     }
     else if ($action == 'admin'){
         $num_row = $row -> get_num_row_db ();
-        $text = $page -> get_all(0,$num_row);
-        echo $page -> get_body($text, '../view/page');
+        //$text = $page -> get_all(0,$num_row);
+        if (!isset($_GET['num'])){
+            $_GET['num'] = 10;
+        }
+        if (!empty($_GET['page'])) {
+            $lim = $_GET['num']*($_GET['page']-1);
+            $text = $page -> get_all($lim,$_GET['num']);
+            echo $page -> get_body($text, '../view/page');
+        }
+        else {
+            $text = $page -> get_all(0,$_GET['num']);
+            echo $page -> get_body($text, '../view/page');
+        }
     }
 }
 ///////////////////////////////////////////////////

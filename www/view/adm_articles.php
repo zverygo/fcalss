@@ -6,11 +6,22 @@
                     <li><a href="#users_ctrl" data-toggle="tab">Управление пользователями</a></li>
                 </ul>
                 <div class="tab-content">
-                   
                     <!-- Вкладка отвечающая за управление постами -->
                     <div class="tab-pane fade in active" id="posts_ctrl">
-                        <p>Управление постами</p>
-                            <table class="table table-striped">
+                        <div>
+                            <p>Управление постами</p>
+                            <form method="get">
+                                <select name ="num">
+                                    <?php 
+                                    for ($q=0, $w=10;$q<5;$q++,$w+=10){
+                                        echo '<option value="'.$w.'">'.$w.'</option>';
+                                    }
+                                    ?>
+                                </select>
+                                <input type="submit" name="action" value="admin">    
+                            </form>                            
+                        </div>    
+                        <table class="table table-striped">
                             <tr>
                                 <th>№</th>
                                 <th>Дата и время</th>
@@ -57,7 +68,25 @@
                                 </div>
                             </div>        
                             <?php endforeach ?>
-                         </table>
+                        </table>
+                        <div>
+                            <ul class="pagination">
+                            <?php
+                                $row = new Post (HOST, USER, PASS, DB);
+                                $num_row = $row -> get_num_row_db ();
+                                if (!isset($_GET['num'])){
+                                    $_GET['num'] = 10;
+                                }
+                                $num_r = $_GET['num'];    
+                                if ($num_row > $_GET['num']){
+                                     for ($a = 0, $b=1; $a < $num_row; $a+=$_GET['num'], $b++){
+                                         echo '<li><a href="../admin/admin.php?num='.$num_r.'&action=admin&page='.$b.'" >'.$b.'</a></li>';
+                                         //echo '<li><a href="#" >'.$b.'</a></li>';
+                                     }
+                                }    
+                            ?>
+                            </ul>
+                        </div>
                     </div>
                      <!-- Вкладка отвечающая за добавлениепостов--> 
                     <div class="tab-pane fade" id="post_plus">
