@@ -5,6 +5,7 @@ articles
 | content  |   text         |       |       |   n_n |
 | date     |   datetime     |       |       |   n_n |
 | author   |   varchar(32)  |       |       |   n_n |
+| rating   |   int(11)      |       |       |   null|
                                                           
 users                                                      
                                                         

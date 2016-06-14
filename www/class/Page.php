@@ -95,6 +95,16 @@ class Page {
         
         return $resalt;
     }
+    //-------------------------------------------
+    /*function pagin ($page);
+        if (!isset($_GET['page'])) {
+            $_GET['page']
+        }
+        else {
+            
+        }*/
+    
+    
 }
 
 ?>
