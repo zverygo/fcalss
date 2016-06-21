@@ -54,7 +54,8 @@ class Post {
     public function get_new_db ($title, $content) {
         $author = $_SESSION['login'];
         $date = date("Y-m-d H:i:s");
-        $sql = "INSERT INTO articles (title, date, content, author) VALUES ('$title', '$date', '$content', '$author')"; //добавить экранирование значений
+        $val = '0;';
+        $sql = "INSERT INTO articles (title, date, content, author, valuing) VALUES ('$title', '$date', '$content', '$author', '$val')"; //добавить экранирование значений
         $res = mysql_query ($sql);
         
         if (!$res) {
@@ -93,8 +94,96 @@ class Post {
         for ($i = 0; $i < mysql_num_rows($res); $i++){
             $row[] = mysql_fetch_array($res, MYSQL_ASSOC);
         }
+        return $row;               
+    }
+//--------РЕЙТИНГ
+    public function rating ($id_post, $rating) {
+        $sql = "SELECT rating, valuing FROM articles WHERE id = '$id_post'";
+        $res = mysql_query ($sql);
+        $row = mysql_fetch_array ($res);
+        $rat = $row['rating'];
+        $val = $row['valuing'];
+        if (!res) return FALSE;
+        
+        if ($rating == '+') {
+            $rat +=1;
+            $val .=$rating.$_SESSION ["id_user"].';'; 
+        }
+        if ($rating == '-') {
+            $rat -=1;
+            $val .=$rating.$_SESSION ["id_user"].';'; 
+        }
+        $sql_up = "UPDATE articles SET rating='$rat', valuing='$val' WHERE id = '$id_post' ";
+        $res_up = mysql_query ($sql_up);
+    }
+    /////////////////////////////////
+    public function valuing ($id_post, $id_user) {
+        $user_p = '+'.$id_user.';';
+        $user_m = '-'.$id_user.';';
+        $sql = "SELECT * FROM articles WHERE id = '$id_post'";
+        $res = mysql_query ($sql);
+        $row = mysql_fetch_array ($res);
+        
+        $rat_c = $row ['rating'];
+        $val = $row ['valuing'];
+        $pos_p = strripos($val,$user_p);
+        $pos_m = strripos($val,$user_m);
+        if ($pos_p > 0 or $pos_m > 0) {
+            $rat = $row ['rating'];
+        }
+        return $rat;
+    }
+//////////////////////////////////////
+    public function best_post () {
+        $sql = "SELECT * FROM articles WHERE rating = (SELECT MAX(rating) FROM articles)";
+        $res = mysql_query($sql);
+        $row = mysql_fetch_array($res);
+        
         return $row;
-               
+    }
+//////////////////////////
+    public function pop_post () {
+        //echo 'WORK';
+        //$sql = "SELECT * FROM articles ORDER BY id_sect DESC";
+        //$sql = "SELECT * FROM articles as A INNER JOIN section as S ON (A.id_sect = S.id_sect)";
+        $sql = "SELECT A.title, A.id_sect, S.full_name, S.id_sect FROM articles as A, section as S WHERE A.id_sect = S.id_sect";
+        $res = mysql_query($sql);
+        
+        for ($i = 0; $i < mysql_num_rows($res); $i++) {
+            $row[] = mysql_fetch_array($res, MYSQL_ASSOC);
+        }
+        
+        return $row;
     }
 }
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
