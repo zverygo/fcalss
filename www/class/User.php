@@ -50,7 +50,7 @@ class User {
         } 
         // --- если есть проверяем пароль ---
         else{
-            $pw = "SELECT password, role FROM users WHERE email = '$email'";
+            $pw = "SELECT * FROM users WHERE email = '$email'";
             $res = mysql_query ($pw);
             $row = mysql_fetch_array ($res);
             $pass = $row['password'];

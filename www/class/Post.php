@@ -143,10 +143,7 @@ class Post {
     }
 //////////////////////////
     public function pop_post () {
-        //echo 'WORK';
-        //$sql = "SELECT * FROM articles ORDER BY id_sect DESC";
-        //$sql = "SELECT * FROM articles as A INNER JOIN section as S ON (A.id_sect = S.id_sect)";
-        $sql = "SELECT A.title, A.id_sect, S.full_name, S.id_sect FROM articles as A, section as S WHERE A.id_sect = S.id_sect";
+    $sql = "SELECT A.title, A.id_sect, S.full_name, S.id_sect FROM articles as A, section as S WHERE A.id_sect = S.id_sect";
         $res = mysql_query($sql);
         
         for ($i = 0; $i < mysql_num_rows($res); $i++) {
@@ -157,33 +154,3 @@ class Post {
     }
 }
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

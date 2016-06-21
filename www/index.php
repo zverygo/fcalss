@@ -15,18 +15,21 @@ $num_pages = $num_row/$lim;
 $pages = 6;
 
 if (isset($_GET['id'])){
-    $id = (int)$_GET['id'];
-    //echo "index ".$id;
-    if ($id!=0) {
-        $text = $page -> get_one ($id);
-        //print_r ($text);   
-        echo $page -> get_body($text, 'view/page');
+    if(empty($_POST['rating'])) {
+        $id = (int)$_GET['id'];
+        if ($id!=0) {
+            $text = $page -> get_one ($id);
+            echo $page -> get_body($text, 'view/page');
+        }
+        else {
+            exit ('wrong parametr');
+        }
     }
     else {
-        exit ('wrong parametr');
+        $page -> get_rat ($_GET['id'], $_POST['rating']);
+        header ("Location: ../index.php?id=".$_GET['id']);
     }
 }
-
 else if (!empty($_GET['page'])) {
     if ($_GET['page'] > $num_pages){
         $_GET['page'] = $num_pages;
@@ -39,7 +42,6 @@ else if (!empty($_GET['page'])) {
         echo $page -> get_body($text, 'view/page');
     }
 }
-
 else {
     $text = $page -> get_all($lim0,$lim);
     echo $page -> get_body($text, 'view/page');
