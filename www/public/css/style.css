@@ -9,7 +9,12 @@ footer {
 
 .admin-table{
     width: 100%;
-    
 }
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
+
+.block {
+    border: 1px solid #d0dde5;   
+}
+
+.post {
+    border: 1px solid #d0dde5;
+}

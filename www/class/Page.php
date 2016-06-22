@@ -95,6 +95,18 @@ class Page {
         
         return $resalt;
     }
+    public function get_rat ($id_post, $rating) {
+        $db = new Post (HOST, USER, PASS, DB);
+        $resatl = $db -> rating ($id_post, $rating);
+        
+        return $resalt;
+    }
+    public function get_tag ($lim0,$lim) {
+        $db = new Post (HOST, USER, PASS, DB);
+        $result = $db -> get_tag_db($lim0,$lim);
+        
+        return $result;
+    }
 }
 
 ?>

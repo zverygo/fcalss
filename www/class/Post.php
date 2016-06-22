@@ -20,7 +20,7 @@ class Post {
 // ----- РАБОТА СО СТАТЬЯМИ ------------    
     
     public function get_all_db ($lim0,$lim) {
-        $sql = "SELECT * FROM articles ORDER BY id DESC LIMIT $lim0,$lim";//////////////////////////////////
+        $sql = "SELECT * FROM articles ORDER BY id DESC LIMIT $lim0,$lim";
         
         $res = mysql_query($sql);
         if(!$res){
@@ -143,7 +143,15 @@ class Post {
     }
 //////////////////////////
     public function pop_post () {
-    $sql = "SELECT A.title, A.id_sect, S.full_name, S.id_sect FROM articles as A, section as S WHERE A.id_sect = S.id_sect";
+        if ($_GET['tag'] == 'all') {
+            $lim = 10;
+            
+        }
+        else if (isset($_GET['tag'])) {
+            $lim = 3;
+        }
+            $sql = "SELECT S.tag, SUM(A.rating) AS tag_rat FROM articles as A, section as S WHERE A.id_sect = S.id_sect GROUP BY S.tag ORDER BY tag_rat DESC LIMIT $lim";
+        
         $res = mysql_query($sql);
         
         for ($i = 0; $i < mysql_num_rows($res); $i++) {
@@ -151,6 +159,21 @@ class Post {
         }
         
         return $row;
+    }
+    public function get_tag_db ($lim0,$lim) {
+        
+        $tag = $_GET['tag'];
+        $sql = "SELECT * FROM articles AS A, section AS S WHERE A.id_sect = S.id_sect AND S.tag = '$tag' ORDER BY id DESC LIMIT $lim0,$lim";
+        
+        $res = mysql_query($sql);
+        if(!$res){
+            return FALSE;
+        }
+        for ($i = 0; $i < mysql_num_rows($res); $i++){
+            $row[] = mysql_fetch_array($res, MYSQL_ASSOC);
+        }
+        return $row;
+        
     }
 }
 ?>

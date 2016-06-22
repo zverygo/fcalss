@@ -3,7 +3,10 @@
     <div class="row">
         <div class="col-lg-9 col-md-9">
             <?php 
-                if (isset ($_GET['id'])){
+                if ($_GET['cap'] == 1) {
+                    include 'cap/iron.php';
+                }
+                else if (isset ($_GET['id'])){
                     include 'article.php';
                 }
                 else if ($_GET['action']=='lc') {
@@ -17,6 +20,14 @@
                 }
                 else if ($_GET['action'] == 'admin') {
                     include 'adm_articles.php';
+                }
+                else if (isset($_GET['tag'])) {
+                    if ($_GET['tag'] == 'all') {
+                        include 'test.php';
+                    }
+                    else  {
+                        include 'articles.php';
+                    }
                 }
                 else {
                     include 'articles.php';
@@ -84,8 +95,8 @@
             
         </div>
         <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-            <div>
-                <BR>
+            <br>
+            <div class="block">
                 <h4>BEST POST</h4>
                 <?php
                     $row = new Post (HOST, USER, PASS, DB);
@@ -95,15 +106,23 @@
                 <em>Опубликовано: <?=$b_post['date']?></em>
                 <p><?=$b_post['content']?></p>
             </div>
-            <div>
-                <br>
+            <br>
+            <div class="block">
                 <h4>ПОПУЛЯРНЫЕ РАЗДЕЛЫ</h4>
                 <?php
                     $row = new Post (HOST, USER, PASS, DB);
                     $test_2 = $row -> pop_post ();
-                       
-                       
                 ?>
+                <?php foreach($test_2 as $a): ?>
+                    <table>
+                        <tr>
+                            <td><?=$a['tag']?></td>
+                            <td><?=$a['tag_rat']?></td>
+                        </tr>
+                    </table>
+                <?php endforeach ?>
+                <a href="../index.php?tag=all" >все разделы</a>
+                
             </div>
             <div>
                 <br>
