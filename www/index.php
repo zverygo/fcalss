@@ -37,7 +37,7 @@ else if ($cap['value'] == 0) {
         }
         else {
             $page -> get_rat ($_GET['id'], $_POST['rating']);
-            header ("Location: ../index.php?id=".$_GET['id']);
+            header ("Location: index.php?id=".$_GET['id']);
         }
     }
     else if (!empty($_GET['page'])) {

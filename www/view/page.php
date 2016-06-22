@@ -1,34 +1,34 @@
-<?php include 'header.php'; ?>
+<?php include 'page/header.php'; ?>
 <div class="container">
     <?php if (!isset($_GET['cap'])) : ?>
     <div class="row">
         <div class="col-lg-9 col-md-9">
             <?php 
                 if (isset ($_GET['id'])){
-                    include 'article.php';
+                    include 'page/article.php';
                 }
                 else if ($_GET['action']=='lc') {
-                    include 'user.php';
+                    include 'usr/user.php';
                 }
                 else if ($_GET['action']=='add') {
-                    include 'adm_article.php';
+                    include 'adm/adm_article.php';
                 }
                 else if ($_GET['action']=='edit') {
-                    include 'adm_article.php';
+                    include 'adm/adm_article.php';
                 }
                 else if ($_GET['action'] == 'admin') {
-                    include 'adm_articles.php';
+                    include 'adm/adm_articles.php';
                 }
                 else if (isset($_GET['tag'])) {
                     if ($_GET['tag'] == 'all') {
-                        include 'test.php';
+                        include 'test/test.php';
                     }
                     else  {
-                        include 'articles.php';
+                        include 'page/articles.php';
                     }
                 }
                 else {
-                    include 'articles.php';
+                    include 'page/articles.php';
                 }
             ?>
             
@@ -87,8 +87,7 @@
                 ?>    
                 </ul>
             </div>
-            
-            
+                    
             <?php endif ?>
             
         </div>
@@ -100,7 +99,7 @@
                     $row = new Post (HOST, USER, PASS, DB);
                     $b_post = $row -> best_post ();
                 ?>
-                <h4><a href="index.php?id=<?=$b_post['id']?>"><?=$b_post['title']?></a></h4>
+                <h4><a href="../index.php?id=<?=$b_post['id']?>"><?=$b_post['title']?></a></h4>
                 <em>Опубликовано: <?=$b_post['date']?></em>
                 <p><?=$b_post['content']?></p>
             </div>
@@ -136,5 +135,5 @@
     ?>
 </div>
 
-<?php include 'footer.php' ;?>
+<?php include 'page/footer.php' ;?>
         

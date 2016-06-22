@@ -8,9 +8,9 @@
     <title>Мой первый блог</title>
 
     <!-- Bootstrap -->
-    <link href="../public/css/bootstrap.css" rel="stylesheet">
-    <link href="../public/css/font-awesome.css" rel="stylesheet">
-    <link href="../public/css/style.css" rel="stylesheet">
+    <link href="../../public/css/bootstrap.css" rel="stylesheet">
+    <link href="../../public/css/font-awesome.css" rel="stylesheet">
+    <link href="../../public/css/style.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,18 +29,18 @@
                 <br>
                 <?php
                 if (isset($_SESSION["login"]))
-                    echo '<a href="../reg/reg.php?action=lc">'.$_SESSION["login"].'</a>
-                          <form method="post" action="../reg/reg.php?action=logout">
+                    echo '<a href="../../reg.php?action=lc">'.$_SESSION["login"].'</a>
+                          <form method="post" action="../../reg.php?action=logout">
                           <input type="submit" name="logout" value="LOG OUT"></form>';      
                     else
-                        echo '<h6><a href="../reg/reg.php">LOGIN</a></h6>';
+                        echo '<h6><a href="../../reg.php">LOGIN</a></h6>';
 
                 if ($_SESSION["role"] == "admin")
-                    echo '<a href="../admin/admin.php?action=admin">Admin Panel</a>';// | 
+                    echo '<a href="../../admin.php?action=admin">Admin Panel</a>';// | 
                           //<a href="../admin/admin.php?action=users">Control Users</a> | 
                          // <a href="../admin/admin.php?action=add">Добавить статью</a><br><br>';
                 if ($_SESSION["role"] == "moderator")
-                    echo '<h6><a href="../admin/admin.php?action=add">Добавить статью</a><br><br></h6>';
+                    echo '<h6><a href="../../admin.php?action=add">Добавить статью</a><br><br></h6>';
                 ?>
             </div>
         </div>

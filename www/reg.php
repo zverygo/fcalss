@@ -1,9 +1,9 @@
 <?php
 
-include '../config.php';
-include '../class/Post.php';
-include '../class/Page.php';
-include '../class/User.php';
+include 'config.php';
+include 'class/Post.php';
+include 'class/Page.php';
+include 'class/User.php';
 
 $page = new Page ();
 //$user = new User ();
@@ -21,7 +21,7 @@ if ($action == "reg") {
         else
             echo "пароли не совпадают";
     }
-    echo $page -> get_body($text, '../view/register');
+    echo $page -> get_body($text, 'view/usr/register');
 }
 else if ($action == "logout"){
     session_start ();
@@ -29,30 +29,30 @@ else if ($action == "logout"){
         unset($_SESSION['name']);
         session_destroy ();
     }
-    header ("Location: ../index.php");    
+    header ("Location: index.php");    
 }
 
 else if ($action == "lc") {
     $text_2 = $page -> get_info_user ();
     $text = $page -> get_all_moder(); // формируем массив со стотьями
-    echo $page -> get_body_2($text, $text_2, '../view/page');
+    echo $page -> get_body_2($text, $text_2, 'view/page');
     
 }
 /////////////////////////////////////
 else if ($action == 'edit_user') {    
     if(!isset ($_SESSION['login']))
-        header ("Location: ../index.php");
+        header ("Location: index.php");
     if(!empty($_POST) && isset($_SESSION['name']))
         $text = $page -> get_edit_user($_POST['full_name'], $_POST['about']);
     $text = $page ->get_info_user();
-    echo $page -> get_body ($text, "../view/register");
+    echo $page -> get_body ($text, "view/usr/register");
 }
 ////////////////////////////////////
 else  {
     if(!empty($_POST)){
         $text = $page -> get_log ($_POST['email'], $_POST['password']);
     }
-    echo $page -> get_body($text, '../view/login');
+    echo $page -> get_body($text, 'view/usr/login');
 }
 
 ?>
