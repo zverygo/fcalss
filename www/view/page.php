@@ -1,12 +1,10 @@
 <?php include 'header.php'; ?>
 <div class="container">
+    <?php if (!isset($_GET['cap'])) : ?>
     <div class="row">
         <div class="col-lg-9 col-md-9">
             <?php 
-                if ($_GET['cap'] == 1) {
-                    include 'cap/iron.php';
-                }
-                else if (isset ($_GET['id'])){
+                if (isset ($_GET['id'])){
                     include 'article.php';
                 }
                 else if ($_GET['action']=='lc') {
@@ -130,6 +128,12 @@
             </div>
         </div>      
     </div>
+    <?php endif ?>
+    <?php 
+        if ($_GET['cap'] == 1) {
+            include 'cap/iron.php';
+        }
+    ?>
 </div>
 
 <?php include 'footer.php' ;?>

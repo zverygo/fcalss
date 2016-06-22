@@ -147,7 +147,7 @@ class Post {
             $lim = 10;
             
         }
-        else if (isset($_GET['tag'])) {
+        else /*if (isset($_GET['tag']))*/ {
             $lim = 3;
         }
             $sql = "SELECT S.tag, SUM(A.rating) AS tag_rat FROM articles as A, section as S WHERE A.id_sect = S.id_sect GROUP BY S.tag ORDER BY tag_rat DESC LIMIT $lim";
