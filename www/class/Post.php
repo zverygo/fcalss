@@ -80,7 +80,7 @@ class Post {
         if (!$res) {
             return FALSE;
         }
-        return header ("Location: ../admin/admin.php");
+        return header ("Location: ../admin.php?action=admin");
     }
 // ---- извлечение постов по конкретному автору --     
     public function get_all_moder_db () {

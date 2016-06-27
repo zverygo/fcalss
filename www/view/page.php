@@ -10,15 +10,6 @@
                 else if ($_GET['action']=='lc') {
                     include 'usr/user.php';
                 }
-                else if ($_GET['action']=='add') {
-                    include 'adm/adm_article.php';
-                }
-                else if ($_GET['action']=='edit') {
-                    include 'adm/adm_article.php';
-                }
-                else if ($_GET['action'] == 'admin') {
-                    include 'adm/adm_articles.php';
-                }
                 else if (isset($_GET['tag'])) {
                     if ($_GET['tag'] == 'all') {
                         include 'test/test.php';
@@ -26,6 +17,12 @@
                     else  {
                         include 'page/articles.php';
                     }
+                }
+                else if ( $_GET['action'] == 'log') {
+                    include 'usr/login.php';
+                }
+                else if ( $_GET['action'] == 'reg') {
+                    include 'usr/register.php';
                 }
                 else {
                     include 'page/articles.php';

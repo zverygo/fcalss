@@ -21,7 +21,7 @@ if ($action == "reg") {
         else
             echo "пароли не совпадают";
     }
-    echo $page -> get_body($text, 'view/usr/register');
+    echo $page -> get_body($text, 'view/page');
 }
 else if ($action == "logout"){
     session_start ();
@@ -45,14 +45,15 @@ else if ($action == 'edit_user') {
     if(!empty($_POST) && isset($_SESSION['name']))
         $text = $page -> get_edit_user($_POST['full_name'], $_POST['about']);
     $text = $page ->get_info_user();
-    echo $page -> get_body ($text, "view/usr/register");
+    echo $page -> get_body ($text, "view/usr/page");
 }
 ////////////////////////////////////
 else  {
     if(!empty($_POST)){
         $text = $page -> get_log ($_POST['email'], $_POST['password']);
     }
-    echo $page -> get_body($text, 'view/usr/login');
+    $_GET['action'] = 'log';
+    echo $page -> get_body($text, 'view/page');
 }
 
 ?>

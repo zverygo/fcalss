@@ -1,5 +1,3 @@
-<?php include_once '../page/header.php'; ?>
-
 <div class="container">
     <h5> ЗАРЕГЕСТРИРУЙСЯ ВО МНЕ ПОЛНОСТЬЮ </h5>
     <form method="post" action="../reg/reg.php?action=<?=$_GET['action']?>">
@@ -38,5 +36,3 @@
         ?>
     </form>
 </div>
-    
-<?php include_once '../page/footer.php'; ?>

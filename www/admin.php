@@ -2,10 +2,10 @@
 
 session_start ();
 
-include '../config.php';
-include '../class/Post.php';
-include '../class/Page.php';
-include '../class/User.php';
+include 'config.php';
+include 'class/Post.php';
+include 'class/Page.php';
+include 'class/User.php';
 
 $page = new Page ();
 $row = new Post (HOST, USER, PASS, DB);
@@ -20,7 +20,7 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
         if(!empty($_POST)){
             $text = $page -> get_new ($_POST['title'], $_POST['content']);
         }
-        echo $page -> get_body ($text, "../view/adm_article");
+        echo $page -> get_body ($text, "view/adm/adm_pan");
     } 
     else if ($action == "edit") {
         if (!isset ($_GET['id']))
@@ -30,16 +30,34 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
             $text = $page -> get_edit ($id, $_POST['title'], $_POST['content']);
         }
         $text = $page -> get_one ($id);
-        echo $page -> get_body ($text, "../view/adm_article"); // вызываем шаблон добавления страницы и записываем в поля результат запроса
+        echo $page -> get_body ($text, "view/adm/adm_pan"); // вызываем шаблон добавления страницы и записываем в поля результат запроса
     }
     else if ($action == "delete") {
         $id = $_GET['id'];
         $page -> get_del ($id);
     }
+//РАБОТА С ПОЛЬЗОВАТЕЛЯМИ
+    //вывод таблицы с пользователями
     else if ($action == "users") {
-        $num_row = 20;
+        $num_row = 20;//сделать как с постами
         $text = $page -> get_all_user($num_row);
-        echo $page -> get_body ($text, '../view/adm_users');
+        echo $page -> get_body ($text, 'view/adm/adm_pan');
+    }
+    //редактирование данных поьзователя
+    else if ($action == "edit_u") {
+        if (!isset ($_GET['id_u']))
+            header ("Location: index.php"); // если id несуществует, то отправляет на главную
+        $id_u = (int)$_GET['id_u'];
+        if (!empty($_POST) && $id_u > 0) {
+            $text = $page -> get_edit ($id, $_POST['title'], $_POST['content']);
+        }
+        $text = $page -> get_one ($id);
+        echo $page -> get_body ($text, "view/adm/adm_pan"); // вызываем шаблон добавления страницы и записываем в поля результат запроса
+    }
+    //удаление пользователя
+    else if ($action == "delete") {
+        $id = $_GET['id'];
+        $page -> get_del ($id);
     }
     else if ($action == 'admin'){
         $num_row = $row -> get_num_row_db ();
@@ -50,11 +68,11 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
         if (!empty($_GET['page'])) {
             $lim = $_GET['num']*($_GET['page']-1);
             $text = $page -> get_all($lim,$_GET['num']);
-            echo $page -> get_body($text, '../view/page');
+            echo $page -> get_body($text, 'view/adm/adm_pan');
         }
         else {
             $text = $page -> get_all(0,$_GET['num']);
-            echo $page -> get_body($text, '../view/page');
+            echo $page -> get_body($text, 'view/adm/adm_pan');
         }
     }
 }

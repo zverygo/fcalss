@@ -1,4 +1,4 @@
-<form method="post" action="../admin/admin.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>">
+<form method="post" action="../admin.php?action=<?=$_GET['action']?>&id=<?=$_GET['id']?>">
     <div class="form-group">
         <label>Название</label>
         <br>

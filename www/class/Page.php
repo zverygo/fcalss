@@ -46,7 +46,7 @@ class Page {
     
     public function get_edit ($id, $title, $content) {
          $db = new Post (HOST, USER, PASS, DB);
-         $result = $db -> get_edit_db ($id, $title, $date, $content);       
+         $result = $db -> get_edit_db ($id, $title, $content);       
     }
     
     public function get_del ($id) {

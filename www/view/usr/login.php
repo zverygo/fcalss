@@ -1,5 +1,3 @@
-<?php //include_once '../page/header.php'; ?>
-
 <div class="container">
     <h5> ВОЙДИ В МЕНЯ ПОЛНОСТЬЮ </h5>
     <form method="post">
@@ -17,5 +15,3 @@
     </form>
     <a href="reg.php?action=reg">REGISTER</a>
 </div>
-    
-<?php include_once '../page/footer.php'; ?>
