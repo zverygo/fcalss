@@ -6,9 +6,11 @@ include 'config.php';
 include 'class/Post.php';
 include 'class/Page.php';
 include 'class/User.php';
+include 'class/Admin.php';
 
 $page = new Page ();
 $row = new Post (HOST, USER, PASS, DB);
+$adm = new Admin (HOST, USER, PASS, DB);
 
 if (isset($_GET['action']))
     $action = $_GET['action'];
@@ -16,7 +18,10 @@ else
     $action = "";   
 
 if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя было просто пройти по ссылке        
-    if ($action == "add"){
+    if ($action == "admin"){
+        echo $page -> get_body ($text, "view/adm/adm_pan");
+    } 
+    else if ($action == "add"){
         if(!empty($_POST)){
             $text = $page -> get_new ($_POST['title'], $_POST['content']);
         }
@@ -54,12 +59,12 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
         $text = $page -> get_one ($id);
         echo $page -> get_body ($text, "view/adm/adm_pan"); // вызываем шаблон добавления страницы и записываем в поля результат запроса
     }
-    //удаление пользователя
+    //удаление пользователя -- не работает
     else if ($action == "delete") {
         $id = $_GET['id'];
         $page -> get_del ($id);
     }
-    else if ($action == 'admin'){
+    else if ($action == 'ctrl_posts'){
         $num_row = $row -> get_num_row_db ();
         //$text = $page -> get_all(0,$num_row);
         if (!isset($_GET['num'])){
@@ -74,6 +79,17 @@ if ($_SESSION['role'] == "admin"){ // проверка чтобы нельзя �
             $text = $page -> get_all(0,$_GET['num']);
             echo $page -> get_body($text, 'view/adm/adm_pan');
         }
+    }
+  //УПРАВЛЕНИЕ САЙТОМ
+    else if (!empty($_GET['cap'])) {
+        if ($_GET['cap'] == on){
+            $value = 0;
+        }
+        else if ($_GET['cap'] == off) {
+            $value = 1;
+        }
+        $adm -> on_off_site ($value);
+        
     }
 }
 ///////////////////////////////////////////////////

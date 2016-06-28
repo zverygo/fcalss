@@ -173,7 +173,12 @@ class Post {
             $row[] = mysql_fetch_array($res, MYSQL_ASSOC);
         }
         return $row;
-        
+    }
+    public function get_num_row_tag ($tag) {
+        $sql = "SELECT * FROM articles AS A, section AS S WHERE A.id_sect = S.id_sect AND S.tag = '$tag'";
+        $res = mysql_query($sql);
+        $num_row = mysql_num_rows($res);
+        return $num_row;
     }
 }
 ?>

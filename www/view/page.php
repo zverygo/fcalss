@@ -1,4 +1,7 @@
-<?php include 'page/header.php'; ?>
+<?php
+include 'page/header.php';
+$row = new Post (HOST, USER, PASS, DB);
+?>
 <div class="container">
     <?php if (!isset($_GET['cap'])) : ?>
     <div class="row">
@@ -12,7 +15,7 @@
                 }
                 else if (isset($_GET['tag'])) {
                     if ($_GET['tag'] == 'all') {
-                        include 'test/test.php';
+                        include 'page/all_tags.php';
                     }
                     else  {
                         include 'page/articles.php';
@@ -33,13 +36,20 @@
             <div>
                 <ul class="pagination">
                 <?php
-                    $row = new Post (HOST, USER, PASS, DB);
-                    $num_row = $row -> get_num_row_db ();
+                    if (!empty($_GET['tag'])) {
+                        $num_row = $row -> get_num_row_tag ($_GET['tag']);
+                    } else {
+                        $num_row = $row -> get_num_row_db ();
+                    }
                     $lim = 3;
                     $num_pages = (int) ($num_row/$lim);
-                    $pages = 5;
+                    if ($num_pages <= 5) {
+                        $pages = $num_pages;
+                    }
+                    else {
+                        $pages = 5;
+                    }
                     $z=5;
-                    $block = (int) (($num_pages/$pages)+1);
                     if (!isset($_GET['page'])) {
                         for ($a = 1; $a <= $pages; $a++) {
                             echo '<li><a href="index.php?page='.$a.'&qqq='.$a.'" >'.$a.'</a></li>';
@@ -93,7 +103,6 @@
             <div class="block">
                 <h4>BEST POST</h4>
                 <?php
-                    $row = new Post (HOST, USER, PASS, DB);
                     $b_post = $row -> best_post ();
                 ?>
                 <h4><a href="../index.php?id=<?=$b_post['id']?>"><?=$b_post['title']?></a></h4>
@@ -104,17 +113,17 @@
             <div class="block">
                 <h4>ПОПУЛЯРНЫЕ РАЗДЕЛЫ</h4>
                 <?php
-                    $row = new Post (HOST, USER, PASS, DB);
                     $test_2 = $row -> pop_post ();
                 ?>
                 <?php foreach($test_2 as $a): ?>
                     <table>
                         <tr>
-                            <td><?=$a['tag']?></td>
+                            <td><a href="index.php?tag=<?=$a['tag']?>"><?=$a['tag']?></a></td>
                             <td><?=$a['tag_rat']?></td>
                         </tr>
                     </table>
                 <?php endforeach ?>
+                <br>
                 <a href="../index.php?tag=all" >все разделы</a>
                 
             </div>

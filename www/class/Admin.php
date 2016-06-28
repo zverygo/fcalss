@@ -23,6 +23,13 @@ class Admin {
         $row = mysql_fetch_array($res);
         
         return $row;        
+    } 
+    public function on_off_site ($value) {
+        $sql = "UPDATE adm_tbl SET value='$value' WHERE name = 'tech_work'";
+        $res = mysql_query ($sql);
+        if (!$res)
+            return FALSE;
+        return header ("Location: ../admin.php?action=admin");
     }
 
 

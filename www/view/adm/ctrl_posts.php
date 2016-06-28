@@ -9,7 +9,7 @@
                 }
                 ?>
             </select>
-            <button class="btn btn-default" type="submit" name="action" value="admin">APPLY</button>
+            <button class="btn btn-default" type="submit" name="action" value="ctrl_posts">APPLY</button>
         </form>
     </div>
     <table class="table table-striped">
@@ -52,7 +52,7 @@
             $num_r = $_GET['num'];    
             if ($num_row > $_GET['num']){
                 for ($a = 0, $b=1; $a < $num_row; $a+=$_GET['num'], $b++){
-                    echo '<li><a href="../admin.php?num='.$num_r.'&action=admin&page='.$b.'" >'.$b.'</a></li>';
+                    echo '<li><a href="../admin.php?num='.$num_r.'&action=ctrl_posts&page='.$b.'" >'.$b.'</a></li>';
                     //echo '<li><a href="#" >'.$b.'</a></li>';
                 }
             }    
